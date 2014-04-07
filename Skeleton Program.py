@@ -208,7 +208,7 @@ def PlayGame(Deck, RecentScores):
     DisplayCard(NextCard)
     NoOfCardsTurnedOver = NoOfCardsTurnedOver + 1
     Higher = IsNextCardHigher(LastCard, NextCard)
-    if (Higher and Choice == 'T') or (not Higher and Choice == 'N'):
+    if (Higher and Choice == 'Y') or (not Higher and Choice == 'N'):
       DisplayCorrectGuessMessage(NoOfCardsTurnedOver - 1)
       LastCard.Rank = NextCard.Rank
       LastCard.Suit = NextCard.Suit
