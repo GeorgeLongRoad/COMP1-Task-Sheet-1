@@ -20,3 +20,4 @@
 		ELSE IF Leaderboard[0].lower() <- 'n' THEN
 			CALL DisplayMenu
 			CALL GetMenuChoice
+		END IF 
