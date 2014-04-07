@@ -21,3 +21,4 @@
 			CALL DisplayMenu
 			CALL GetMenuChoice
 		END IF 
+		RETURN PlayerName
