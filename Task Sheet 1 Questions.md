@@ -9,16 +9,14 @@
 ## Pseudo-Code
 
 	FUNCTION GetPlayerName()
-		Leaderboard = INPUT ''DO you want to add your score to the high score table? (y or n):
-		IF Leaderboard[0].lower() <- 'y' THEN
-			OUTPUT '' ''
+		PlayerName = INPUT ''Please enter your name: ''
+		WHILE LEN(PlayerName) == 0:
+			OUPUT ''You must enter something for your name.''
 			PlayerName = INPUT ''Please enter your name: ''
-			WHILE LEN(PlayerName) == 0:
-				OUPUT ''You must enter something for your name.''
-				PlayerName = INPUT ''Please enter your name: ''
-			END WHILE
-		ELSE IF Leaderboard[0].lower() <- 'n' THEN
-			CALL DisplayMenu
-			CALL GetMenuChoice
-		END IF 
 		RETURN PlayerName
+			END WHILE
+	END FUNCTION
+
+# Task 3(b)
+
+1. The function that adds the scores to the table is UpdateRecentScores()
