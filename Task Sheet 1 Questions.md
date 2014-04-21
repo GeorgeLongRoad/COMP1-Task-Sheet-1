@@ -24,4 +24,5 @@
 # Task 5
 
 1. You need to import the datetime module to add the date to the scores.
-2. 
+2. DisplayRecentScores, UpdateRecentScores, ResetRecentScores
+3. Using the conversion of datetime.date.strftime
