@@ -20,3 +20,8 @@
 # Task 3(b)
 
 1. The function that adds the scores to the table is UpdateRecentScores()
+
+# Task 5
+
+1. You need to import the datetime module to add the date to the scores.
+2. 
