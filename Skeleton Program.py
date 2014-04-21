@@ -161,6 +161,7 @@ def ResetRecentScores(RecentScores):
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores[Count].Name = ''
     RecentScores[Count].Score = 0
+    RecentScores[Count].Date = ''
 
 def DisplayRecentScores(RecentScores):
   print()
