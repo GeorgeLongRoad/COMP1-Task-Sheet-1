@@ -27,32 +27,61 @@ Choice = ''
 
 def GetRank(RankNo):
   Rank = ''
-  if RankNo == 1:
-    Rank = 'Ace'
-  elif RankNo == 2:
-    Rank = 'Two'
-  elif RankNo == 3:
-    Rank = 'Three'
-  elif RankNo == 4:
-    Rank = 'Four'
-  elif RankNo == 5:
-    Rank = 'Five'
-  elif RankNo == 6:
-    Rank = 'Six'
-  elif RankNo == 7:
-    Rank = 'Seven'
-  elif RankNo == 8:
-    Rank = 'Eight'
-  elif RankNo == 9:
-    Rank = 'Nine'
-  elif RankNo == 10:
-    Rank = 'Ten'
-  elif RankNo == 11:
-    Rank = 'Jack'
-  elif RankNo == 12:
-    Rank = 'Queen'
-  elif RankNo == 13:
-    Rank = 'King'
+  if HighorLow == 'l':
+    if RankNo == 1:
+      Rank = 'Ace'
+    elif RankNo == 2:
+      Rank = 'Two'
+    elif RankNo == 3:
+      Rank = 'Three'
+    elif RankNo == 4:
+      Rank = 'Four'
+    elif RankNo == 5:
+      Rank = 'Five'
+    elif RankNo == 6:
+      Rank = 'Six'
+    elif RankNo == 7:
+      Rank = 'Seven'
+    elif RankNo == 8:
+      Rank = 'Eight'
+    elif RankNo == 9:
+      Rank = 'Nine'
+    elif RankNo == 10:
+      Rank = 'Ten'
+    elif RankNo == 11:
+      Rank = 'Jack'
+    elif RankNo == 12:
+      Rank = 'Queen'
+    elif RankNo == 13:
+      Rank = 'King'
+  elif HighorLow == 'h':
+    if RankNo == 2:
+      Rank = 'Two'
+    elif RankNo == 3:
+      Rank = 'Three'
+    elif RankNo == 4:
+      Rank = 'Four'
+    elif RankNo == 5:
+      Rank = 'Five'
+    elif RankNo == 6:
+      Rank = 'Six'
+    elif RankNo == 7:
+      Rank = 'Seven'
+    elif RankNo == 8:
+      Rank = 'Eight'
+    elif RankNo == 9:
+      Rank = 'Nine'
+    elif RankNo == 10:
+      Rank = 'Ten'
+    elif RankNo == 11:
+      Rank = 'Jack'
+    elif RankNo == 12:
+      Rank = 'Queen'
+    elif RankNo == 13:
+      Rank = 'King'
+    elif RankNo == 14:
+      Rank = 'Ace'
+    
   return Rank
 
 def GetSuit(SuitNo):
@@ -75,6 +104,7 @@ def DisplayMenu():
   print('2. Play game (without shuffle)')
   print('3. Display recent scores')
   print('4. Reset recent scores')
+  print('5. Options')
   print()
   print('Select an option from the menu (or enter q to quit): ', end='')
 
@@ -88,13 +118,14 @@ def DisplayOptions():
   print('OPTION MENU')
   print('')
   print('1. Set Ace to be HIGH or LOW')
+  print('')
 
 def GetOptionChoice():
   OptionChoice = input('Select an option from the menu (or enter q to quit):')
   return OptionChoice
 
-def SetOptions(OptionsChoice):
-  while choice != 'q':
+def SetOptions(OptionChoice):
+  while OptionChoice != 'q':
     if OptionChoice == '1':
       SetAceHighOrLow()
 
@@ -269,4 +300,8 @@ if __name__ == '__main__':
     elif Choice == '4':
       ResetRecentScores(RecentScores)
     elif Choice == '5':
-      
+      DisplayOptions()
+      GetOptionChoice()
+      SetOptions(OptionChoice)
+      SetAceHighOrLow()
+
