@@ -84,6 +84,24 @@ def GetMenuChoice():
   print()
   return Choice
 
+def DisplayOptions():
+  print('OPTION MENU')
+  print('')
+  print('1. Set Ace to be HIGH or LOW')
+
+def GetOptionChoice():
+  OptionChoice = input('Select an option from the menu (or enter q to quit):')
+  return OptionChoice
+
+def SetOptions(OptionsChoice):
+  while choice != 'q':
+    if OptionChoice == '1':
+      SetAceHighOrLow()
+
+def SetAceHighOrLow():
+  HighorLow = input('Do you want the ace to be (h)igh or (l)ow:')
+  return HighorLow[0].lower()
+
 def LoadDeck(Deck):
   CurrentFile = open('deck.txt', 'r')
   Count = 1
@@ -250,3 +268,5 @@ if __name__ == '__main__':
       DisplayRecentScores(RecentScores)
     elif Choice == '4':
       ResetRecentScores(RecentScores)
+    elif Choice == '5':
+      
