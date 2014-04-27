@@ -27,60 +27,33 @@ Choice = ''
 
 def GetRank(RankNo):
   Rank = ''
-  if HighorLow == 'l':
-    if RankNo == 1:
-      Rank = 'Ace'
-    elif RankNo == 2:
-      Rank = 'Two'
-    elif RankNo == 3:
-      Rank = 'Three'
-    elif RankNo == 4:
-      Rank = 'Four'
-    elif RankNo == 5:
-      Rank = 'Five'
-    elif RankNo == 6:
-      Rank = 'Six'
-    elif RankNo == 7:
-      Rank = 'Seven'
-    elif RankNo == 8:
-      Rank = 'Eight'
-    elif RankNo == 9:
-      Rank = 'Nine'
-    elif RankNo == 10:
-      Rank = 'Ten'
-    elif RankNo == 11:
-      Rank = 'Jack'
-    elif RankNo == 12:
-      Rank = 'Queen'
-    elif RankNo == 13:
-      Rank = 'King'
-  elif HighorLow == 'h':
-    if RankNo == 2:
-      Rank = 'Two'
-    elif RankNo == 3:
-      Rank = 'Three'
-    elif RankNo == 4:
-      Rank = 'Four'
-    elif RankNo == 5:
-      Rank = 'Five'
-    elif RankNo == 6:
-      Rank = 'Six'
-    elif RankNo == 7:
-      Rank = 'Seven'
-    elif RankNo == 8:
-      Rank = 'Eight'
-    elif RankNo == 9:
-      Rank = 'Nine'
-    elif RankNo == 10:
-      Rank = 'Ten'
-    elif RankNo == 11:
-      Rank = 'Jack'
-    elif RankNo == 12:
-      Rank = 'Queen'
-    elif RankNo == 13:
-      Rank = 'King'
-    elif RankNo == 14:
-      Rank = 'Ace'
+  if Rank == 1:
+    Rank = 'Ace'
+  elif RankNo == 2:
+    Rank = 'Two'
+  elif RankNo == 3:
+    Rank = 'Three'
+  elif RankNo == 4:
+    Rank = 'Four'
+  elif RankNo == 5:
+    Rank = 'Five'
+  elif RankNo == 6:
+    Rank = 'Six'
+  elif RankNo == 7:
+    Rank = 'Seven'
+  elif RankNo == 8:
+    Rank = 'Eight'
+  elif RankNo == 9:
+    Rank = 'Nine'
+  elif RankNo == 10:
+    Rank = 'Ten'
+  elif RankNo == 11:
+    Rank = 'Jack'
+  elif RankNo == 12:
+    Rank = 'Queen'
+  elif RankNo == 13:
+    Rank = 'King'
+  return Rank
     
   return Rank
 
@@ -119,21 +92,33 @@ def DisplayOptions():
   print('')
   print('1. Set Ace to be HIGH or LOW')
   print('')
+  print()
 
 def GetOptionChoice():
-  OptionChoice = input('Select an option from the menu (or enter q to quit):')
+  OptionChoice = input('Select an option from the menu (or enter q to quit): ')
+  OptionChoice = OptionChoice[0]
+  print()
   return OptionChoice
 
 def SetOptions(OptionChoice):
-  while OptionChoice != 'q':
-    if OptionChoice == '1':
-      SetAceHighOrLow()
-
-def SetAceHighOrLow():
-  HighorLow = input('Do you want the ace to be (h)igh or (l)ow:')
-  return HighorLow[0].lower()
+  global HIGH_LOW
+  if OptionChoice == "1":
+    HIGH_LOW = SetAceHighLow()
+  elif OptionChoice == "2":
+    pass
+    
+def SetAceHighLow():
+  global HIGH_LOW
+  aceHL = input("Do you want ace to be high or low?(H/L): ").lower()
+  HIGH = None
+  if aceHL == "h":
+    HIGH = True
+  elif aceHL == "l":
+    HIGH = False
+  return HIGH
 
 def LoadDeck(Deck):
+  global HIGH_LOW
   CurrentFile = open('deck.txt', 'r')
   Count = 1
   while True:
@@ -301,7 +286,7 @@ if __name__ == '__main__':
       ResetRecentScores(RecentScores)
     elif Choice == '5':
       DisplayOptions()
-      GetOptionChoice()
+      OptionChoice = GetOptionChoice()
       SetOptions(OptionChoice)
-      SetAceHighOrLow()
+
 
