@@ -7,6 +7,7 @@
 
 import random
 import datetime
+import pdb
 
 NO_OF_RECENT_SCORES = 3
 
@@ -54,8 +55,6 @@ def GetRank(RankNo):
   elif RankNo == 13:
     Rank = 'King'
   return Rank
-    
-  return Rank
 
 def GetSuit(SuitNo):
   Suit = ''
@@ -87,6 +86,8 @@ def GetMenuChoice():
   print()
   return Choice
 
+
+#==============================================================================
 def DisplayOptions():
   print('OPTION MENU')
   print('')
@@ -103,19 +104,22 @@ def GetOptionChoice():
 def SetOptions(OptionChoice):
   global HIGH_LOW
   if OptionChoice == "1":
-    HIGH_LOW = SetAceHighLow()
+    SetAceHighLow()
   elif OptionChoice == "2":
     pass
     
 def SetAceHighLow():
   global HIGH_LOW
-  aceHL = input("Do you want ace to be high or low?(H/L): ").lower()
-  HIGH = None
+  aceHL = input("Do you want ace to be high or low?(h/l): ").lower()
+  High = None
   if aceHL == "h":
-    HIGH = True
+    High = True
   elif aceHL == "l":
-    HIGH = False
-  return HIGH
+    High = False
+  print(High)
+  return High
+
+#================================================================================
 
 def LoadDeck(Deck):
   global HIGH_LOW
