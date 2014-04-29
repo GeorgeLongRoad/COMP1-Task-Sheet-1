@@ -203,6 +203,7 @@ def ResetRecentScores(RecentScores):
     RecentScores[Count].Date = ''
 
 def DisplayRecentScores(RecentScores):
+  BubbleSortScores(RecentScores)
   print()
   print('Recent Scores: ')
   print()
@@ -214,6 +215,18 @@ def DisplayRecentScores(RecentScores):
   print('Press the Enter key to return to the main menu')
   input()
   print()
+
+def BubbleSortScores(RecentScores):
+  sort = False
+  while not sort:
+    sort = True
+    for Count in range(1, NO_OF_RECENT_SCORES+1):
+      if RecentScores[Count].Score < RecentScores[Count + 1].score:
+        sort = False
+        temp = RecentScores[Count + 1]
+        RecentScores[Count + 1] = RecentScores[Count]
+        RecentScores[Count] = temp
+        
 
 def UpdateRecentScores(RecentScores, Score):
   Leaderboard = input('Do you want to add your score to the high score table? (y or n): ')
