@@ -28,7 +28,7 @@ Choice = ''
 
 def GetRank(RankNo):
   Rank = ''
-  if Rank == 1:
+  if RankNo == 1:
     Rank = 'Ace'
   elif RankNo == 2:
     Rank = 'Two'
@@ -54,6 +54,8 @@ def GetRank(RankNo):
     Rank = 'Queen'
   elif RankNo == 13:
     Rank = 'King'
+  elif RankNo == 14:
+    Rank = 'Ace'
   return Rank
 
 def GetSuit(SuitNo):
@@ -102,27 +104,23 @@ def GetOptionChoice():
   return OptionChoice
 
 def SetOptions(OptionChoice):
-  global HIGH_LOW
   if OptionChoice == "1":
     SetAceHighLow()
   elif OptionChoice == "2":
     pass
     
 def SetAceHighLow():
-  global HIGH_LOW
+  global High
   aceHL = input("Do you want ace to be high or low?(h/l): ").lower()
   High = None
   if aceHL == "h":
     High = True
   elif aceHL == "l":
     High = False
-  print(High)
-  return High
 
 #================================================================================
 
-def LoadDeck(Deck):
-  global HIGH_LOW
+def LoadDeck(Deck, High):
   CurrentFile = open('deck.txt', 'r')
   Count = 1
   while True:
@@ -133,7 +131,10 @@ def LoadDeck(Deck):
     Deck[Count].Suit = int(LineFromFile)
     LineFromFile = CurrentFile.readline()
     Deck[Count].Rank = int(LineFromFile)
+    if Deck[Count].Rank == 1 and High == True:
+      Deck[Count].Rank = 14
     Count = Count + 1
+  
  
 def ShuffleDeck(Deck):
   SwapSpace = TCard()
@@ -274,15 +275,16 @@ if __name__ == '__main__':
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores.append(TRecentScore())
   Choice = ''
+  High = False
   while Choice != 'q':
     DisplayMenu()
     Choice = GetMenuChoice()
     if Choice == '1':
-      LoadDeck(Deck)
+      
       ShuffleDeck(Deck)
       PlayGame(Deck, RecentScores)
     elif Choice == '2':
-      LoadDeck(Deck)
+      LoadDeck(Deck, High)
       PlayGame(Deck, RecentScores)
     elif Choice == '3':
       DisplayRecentScores(RecentScores)
