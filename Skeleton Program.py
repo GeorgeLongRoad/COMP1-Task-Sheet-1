@@ -79,6 +79,7 @@ def DisplayMenu():
   print('3. Display recent scores')
   print('4. Reset recent scores')
   print('5. Options')
+  print('6. Save high scores' )
   print()
   print('Select an option from the menu (or enter q to quit): ', end='')
 
@@ -203,7 +204,7 @@ def ResetRecentScores(RecentScores):
     RecentScores[Count].Date = ''
 
 def DisplayRecentScores(RecentScores):
-  BubbleSortScores(RecentScores)
+  BubbleSortScores(RecentScores) #task 7
   print()
   print('Recent Scores: ')
   print()
@@ -216,6 +217,7 @@ def DisplayRecentScores(RecentScores):
   input()
   print()
 
+########################Task 7############################
 def BubbleSortScores(RecentScores):
   sort = False
   while not sort:
@@ -226,7 +228,7 @@ def BubbleSortScores(RecentScores):
         temp = RecentScores[Count + 1]
         RecentScores[Count + 1] = RecentScores[Count]
         RecentScores[Count] = temp
-        
+############################################################      
 
 def UpdateRecentScores(RecentScores, Score):
   Leaderboard = input('Do you want to add your score to the high score table? (y or n): ')
@@ -282,18 +284,51 @@ def PlayGame(Deck, RecentScores):
     DisplayEndOfGameMessage(51)
     UpdateRecentScores(RecentScores, 51)
 
+#######################Task 8#######################
+def SaveScores(RecentScores):
+  with open("save_scores.txt",mode="w",encoding="utf-8")as my_file:
+    for Count in range(1,NO_OF_RECENT_SCORES+1):
+      Name = RecentScores[Count].Name
+      Score = ("{0}".format(RecentScores[Count].Score))
+      Date = RecentScores[Count].Date
+      my_file.write(Name+("\n"))
+      my_file.write(Score+("\n"))
+      my_file.write(Date+("\n"))
+    print("Scores Saved.")
+#############################################
+
+########################Task 9###################
+def LoadScores():
+  with open("save_scores.txt",mode="r",encoding="utf-8")as my_file:
+    for Count in range(1,NO_OF_RECENT_SCORES+1):
+      Name = my_file.readline()
+      Score = my_file.readline()
+      Date = my_file.readline()
+      Name = Name.rstrip("\n")
+      Score = Score.rstrip("\n")
+      Date = Date.rstrip("\n")
+      RecentScores[Count].Name = Name
+      RecentScores[Count].Score = Score
+      RecentScores[Count].Date = Date
+    
 if __name__ == '__main__':
   for Count in range(1, 53):
     Deck.append(TCard())
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores.append(TRecentScore())
+  try:
+    LoadScores()
+  except FileNotFoundError:
+    print()
+    print('saved games file not found, a new file has been created.')
+    print()
+    SaveScores(RecentScores)
   Choice = ''
-  High = False
+  High = False #Task 6
   while Choice != 'q':
     DisplayMenu()
     Choice = GetMenuChoice()
     if Choice == '1':
-      
       ShuffleDeck(Deck)
       PlayGame(Deck, RecentScores)
     elif Choice == '2':
@@ -307,5 +342,7 @@ if __name__ == '__main__':
       DisplayOptions()
       OptionChoice = GetOptionChoice()
       SetOptions(OptionChoice)
+    elif Choice == '6':
+      SaveScores(RecentScores) #Task 7
 
 
