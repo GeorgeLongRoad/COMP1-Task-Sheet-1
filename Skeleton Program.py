@@ -220,8 +220,8 @@ def BubbleSortScores(RecentScores):
   sort = False
   while not sort:
     sort = True
-    for Count in range(1, NO_OF_RECENT_SCORES+1):
-      if RecentScores[Count].Score < RecentScores[Count + 1].score:
+    for Count in range(1, NO_OF_RECENT_SCORES):
+      if RecentScores[Count].Score < RecentScores[Count + 1].Score:
         sort = False
         temp = RecentScores[Count + 1]
         RecentScores[Count + 1] = RecentScores[Count]
