@@ -9,7 +9,7 @@ import random
 import datetime
 import pdb
 
-NO_OF_RECENT_SCORES = 3
+NO_OF_RECENT_SCORES = 10
 
 class TCard():
   def __init__(self):
@@ -312,7 +312,6 @@ def LoadScores():
       RecentScores[Count].Name = Name
       RecentScores[Count].Score = Score
       RecentScores[Count].Date = Date
-    #BubbleSortScores(RecentScores)
     
 if __name__ == '__main__':
   for Count in range(1, 53):
