@@ -138,6 +138,7 @@ def LoadDeck(Deck, High):
   
  
 def ShuffleDeck(Deck):
+  #pdb.set_trace()
   SwapSpace = TCard()
   NoOfSwaps = 1000
   for NoOfSwapsMadeSoFar in range(1, NoOfSwaps + 1):
@@ -247,7 +248,7 @@ def UpdateRecentScores(RecentScores, Score):
       for Count in range(1, NO_OF_RECENT_SCORES):
         RecentScores[Count].Name = RecentScores[Count + 1].Name
         RecentScores[Count].Score = RecentScores[Count + 1].Score
-        RecentScore[Count].Date = RecentScore[Count + 1].Date
+        RecentScores[Count].Date = RecentScores[Count + 1].Date
       Count = NO_OF_RECENT_SCORES
     RecentScores[Count].Name = PlayerName
     RecentScores[Count].Score = Score
@@ -306,10 +307,12 @@ def LoadScores():
       Date = my_file.readline()
       Name = Name.rstrip("\n")
       Score = Score.rstrip("\n")
+      Score = int(Score)
       Date = Date.rstrip("\n")
       RecentScores[Count].Name = Name
       RecentScores[Count].Score = Score
       RecentScores[Count].Date = Date
+    #BubbleSortScores(RecentScores)
     
 if __name__ == '__main__':
   for Count in range(1, 53):
@@ -318,7 +321,7 @@ if __name__ == '__main__':
     RecentScores.append(TRecentScore())
   try:
     LoadScores()
-  except FileNotFoundError:
+  except IOError:
     print()
     print('saved games file not found, a new file has been created.')
     print()
@@ -329,6 +332,8 @@ if __name__ == '__main__':
     DisplayMenu()
     Choice = GetMenuChoice()
     if Choice == '1':
+      #pdb.set_trace()
+      LoadDeck(Deck, High)
       ShuffleDeck(Deck)
       PlayGame(Deck, RecentScores)
     elif Choice == '2':
