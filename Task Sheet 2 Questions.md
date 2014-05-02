@@ -37,4 +37,8 @@
 	ELSE IF aceHL == "l" THEN
 		High = FALSE
 	END IF
-	
+
+##Task 10b
+
+1. If there are already scores in the text file, only 3, it may only save 3 of the 10
+ recent scores because the recent scores was set before the text file was made.
