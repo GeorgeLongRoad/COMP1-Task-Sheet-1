@@ -25,6 +25,7 @@ class TRecentScore():
 Deck = [None]
 RecentScores = [None]
 Choice = ''
+SameScore = False
 
 def GetRank(RankNo):
   Rank = ''
@@ -95,7 +96,8 @@ def DisplayOptions():
   print('OPTION MENU')
   print('')
   print('1. Set Ace to be HIGH or LOW')
-  print('')
+  print('2. Setting cards the same score ')
+  print()
   print()
 
 def GetOptionChoice():
@@ -108,7 +110,7 @@ def SetOptions(OptionChoice):
   if OptionChoice == "1":
     SetAceHighLow()
   elif OptionChoice == "2":
-    pass
+    SetSameScore()
     
 def SetAceHighLow():
   global High
@@ -120,7 +122,16 @@ def SetAceHighLow():
     High = False
 
 #================================================================================
-
+    
+#========================Task 11========
+def SetSameScore():
+  SameScore = input('Do you want equal cards to have the same score?:  ')
+  #valid = False
+  if SameScore == 'y':
+    SameScore = True
+  elif SameScore == 'n':
+    SameScore = False
+#===============    
 def LoadDeck(Deck, High):
   CurrentFile = open('deck.txt', 'r')
   Count = 1
@@ -258,6 +269,7 @@ def UpdateRecentScores(RecentScores, Score):
     GetMenuChoice()
 
 def PlayGame(Deck, RecentScores):
+  global SameScore
   LastCard = TCard()
   NextCard = TCard()
   GameOver = False
@@ -270,8 +282,13 @@ def PlayGame(Deck, RecentScores):
     while (Choice != 'Y') and (Choice != 'N'):
       Choice = GetChoiceFromUser()
     DisplayCard(NextCard)
-    NoOfCardsTurnedOver = NoOfCardsTurnedOver + 1
-    Higher = IsNextCardHigher(LastCard, NextCard)
+    NoOfCardsTurnedOver = NoOfCardsTurnedOver + 1 
+    if SameScore == True and NextCard.Rank == LastCard.Rank:
+      GameOver = True
+    if SameScore == False and NextCard.Rank == LastCard.Rank:
+      GameOver = False
+      NoOfCardsTurnedOver = NoOfCardsTurnedOver + 1
+    Higher = IsNextCardHigher(LastCard, NextCard) 
     if (Higher and Choice == 'Y') or (not Higher and Choice == 'N'):
       DisplayCorrectGuessMessage(NoOfCardsTurnedOver - 1)
       LastCard.Rank = NextCard.Rank
