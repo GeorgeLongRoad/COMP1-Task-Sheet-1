@@ -15,6 +15,7 @@ def select_option():
     while not valid_option:
         try:
             choice = int(input("Option selected: "))
+            print()
             if choice in(1,2):
                 valid_option = True
             else:
@@ -33,7 +34,7 @@ def create_crop():
     return new_crop
 
 def main():
-    new_crop = creat_crop()
+    new_crop = create_crop()
     manage_crop(new_crop)
 
 if __name__ == "__main__":
